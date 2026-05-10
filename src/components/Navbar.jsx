@@ -6,7 +6,7 @@ const Navbar = () => {
         <nav className="flex justify-between shadow-md p-4 bg-white sticky top-0 z-50">
             <ul className="flex gap-3">
                 <li><Link href="/">Home</Link></li>
-                <li><Link href="/destinations">Destinations</Link></li>
+                <li><Link href="/add-destinations">Add Destinations</Link></li>
                 <li><Link href="/my-bookings">My Bookings</Link></li>
             </ul>
 
