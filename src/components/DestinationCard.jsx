@@ -1,12 +1,15 @@
 // DestinationCard.jsx
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { LuMapPin } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
 
 const DestinationCard = ({ destination }) => {
     const {
+        _id,
         imageUrl,
         destinationName,
         country,
@@ -17,7 +20,7 @@ const DestinationCard = ({ destination }) => {
     } = destination;
 
     return (
-        <div className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:-translate-y-2">
+        <div className="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:-translate-y-2">
             
             {/* Image */}
             <div className="relative overflow-hidden">
@@ -65,14 +68,14 @@ const DestinationCard = ({ destination }) => {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">
+                {/* <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">
                     {description}
-                </p>
+                </p> */}
 
                 {/* Button */}
-                <button className="w-full mt-2 bg-black hover:bg-blue-600 text-white py-3 rounded-2xl font-semibold transition duration-300 cursor-pointer">
-                    Explore Now
-                </button>
+                <Link href={`/destinations/${_id}`}><button className="w-full mt-2 bg-black hover:bg-blue-600 text-white py-3 rounded-2xl font-semibold transition duration-300 cursor-pointer flex items-center justify-center gap-1 ">
+                    <FaExternalLinkAlt /> <span>Explore Now</span>
+                </button></Link>
             </div>
         </div>
     );
