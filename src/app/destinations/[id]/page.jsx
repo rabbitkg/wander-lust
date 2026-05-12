@@ -1,5 +1,6 @@
 
 
+import { CancelAlert } from "@/components/CancelAlert";
 import { EditModal } from "@/components/EditModal";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,10 +60,7 @@ const DestinationDetailsPage = async ({ params }) => {
                        <EditModal destination={destination}/>
 
                         {/* Cancel */}
-                        <button className="flex items-center gap-2 border border-red-300 text-red-500 bg-white px-5 py-2 text-sm hover:bg-red-500 hover:text-white transition cursor-pointer">
-                            <FaTrash size={12} />
-                            Cancel
-                        </button>
+                        <CancelAlert destination={destination}/>
                     </div>
                 </div>
 
