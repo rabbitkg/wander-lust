@@ -1,10 +1,11 @@
 'use client'
-import { Card } from '@heroui/react';
+import { Card, Separator } from '@heroui/react';
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { authClient } from '@/lib/auth-client';
 import { redirect } from 'next/navigation';
 import { toast, ToastContainer } from 'react-toastify';
+import { FcGoogle } from 'react-icons/fc';
 
 const LoginPage = () => {
 
@@ -25,7 +26,14 @@ const LoginPage = () => {
         if(error) {
             toast.error('error')
         }
-    }
+    };
+
+    const handleGoogleSignin = async () => {
+            await authClient.signIn.social({
+                provider: "google",
+                callbackURL: "/"
+            });
+        }
 
     return (
         <div className='max-w-xl mx-auto mt-10'>
@@ -95,6 +103,25 @@ const LoginPage = () => {
 
                     </div>
                 </Form>
+                <div className="flex items-center gap-4">
+                                    <Separator className="flex-1" />
+                
+                                    <span className="whitespace-nowrap">
+                                        Or sign up with
+                                    </span>
+                
+                                    <Separator className="flex-1" />
+                                </div>
+                                <div>
+                                    <Button
+                                        type='button'
+                                        onClick={handleGoogleSignin}
+                                        className="w-full rounded-sm text-black bg-blue-200 border border-gray-300 hover:bg-blue-400 flex items-center justify-center gap-2"
+                                    >
+                                        <FcGoogle className="text-xl" />
+                                        <span>Sign in With Google</span>
+                                    </Button>
+                                </div>
             </Card>
 
 

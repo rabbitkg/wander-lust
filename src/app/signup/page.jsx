@@ -1,10 +1,11 @@
 'use client'
-import { Card } from '@heroui/react';
+import { Card, Separator } from '@heroui/react';
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { authClient } from '@/lib/auth-client';
 import { redirect } from 'next/navigation';
 import { toast, ToastContainer } from 'react-toastify';
+import { FcGoogle } from 'react-icons/fc';
 
 const SignUpPage = () => {
 
@@ -21,12 +22,19 @@ const SignUpPage = () => {
             image: user.image
         })
 
-        if(data) {
+        if (data) {
             redirect('/')
         }
-        if(error) {
+        if (error) {
             toast.error('error')
         }
+    };
+
+    const handleGoogleSignin = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/"
+        });
     }
 
     return (
@@ -35,10 +43,10 @@ const SignUpPage = () => {
                 <h1 className='text-2xl font-bold'>Create Account</h1>
                 <p>Start your adventure with Wanderlust</p>
             </div>
-            <Card className='border shadow-lg rounded-sm'>
-                <Form 
-                onSubmit={onSubmit}
-                className="flex flex-col gap-4">
+            <Card className='border-3 border-gray-300 shadow-lg rounded-sm'>
+                <Form
+                    onSubmit={onSubmit}
+                    className="flex flex-col gap-4">
 
 
                     <TextField
@@ -113,10 +121,29 @@ const SignUpPage = () => {
 
                     </div>
                 </Form>
+                <div className="flex items-center gap-4">
+                    <Separator className="flex-1" />
+
+                    <span className="whitespace-nowrap">
+                        Or sign up with
+                    </span>
+
+                    <Separator className="flex-1" />
+                </div>
+                <div>
+                    <Button
+                        type='button'
+                        onClick={handleGoogleSignin}
+                        className="w-full rounded-sm text-black bg-blue-200 border border-gray-300 hover:bg-blue-400 flex items-center justify-center gap-2"
+                    >
+                        <FcGoogle className="text-xl" />
+                        <span>Sign in With Google</span>
+                    </Button>
+                </div>
             </Card>
 
 
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

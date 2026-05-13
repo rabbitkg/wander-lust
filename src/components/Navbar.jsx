@@ -38,7 +38,9 @@ const Navbar = () => {
 
                     <li>
                         <Avatar>
-                            <Avatar.Image className="border rounded-full border-l-emerald-700" alt="John Doe" src={user?.image} />
+                            <Avatar.Image 
+                            referrerPolicy="no-referrer"
+                            className="border rounded-full border-l-emerald-700" alt="John Doe" src={user?.image} />
                             <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
                         </Avatar>
                     </li>
