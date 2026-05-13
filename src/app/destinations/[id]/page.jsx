@@ -1,5 +1,6 @@
 
 
+import BookingCard from "@/components/BookingCard";
 import { CancelAlert } from "@/components/CancelAlert";
 import { EditModal } from "@/components/EditModal";
 import Image from "next/image";
@@ -177,56 +178,7 @@ const DestinationDetailsPage = async ({ params }) => {
                     {/* Booking Card */}
                     <div>
 
-                        <div className="bg-white border border-gray-200 shadow-md p-6 sticky top-10">
-
-                            {/* Price */}
-                            <p className="text-gray-500 text-sm mb-1">
-                                Starting from
-                            </p>
-
-                            <h2 className="text-5xl font-bold text-cyan-500 mb-1">
-                                ${price}
-                            </h2>
-
-                            <p className="text-gray-500 text-sm mb-8">
-                                per person
-                            </p>
-
-                            {/* Date */}
-                            <input
-                                type="date"
-                                className="w-full border border-gray-200 bg-gray-100 px-4 py-3 mb-5 outline-none"
-                            />
-
-                            {/* Book Button */}
-                            <button className="w-full bg-cyan-500 hover:bg-cyan-600 text-white py-4 transition duration-300">
-                                Book Now →
-                            </button>
-
-                            {/* Features */}
-                            <div className="mt-8 space-y-4">
-
-                                {[
-                                    "Free cancellation up to 7 days",
-                                    "Travel insurance included",
-                                    "24/7 customer support",
-                                ].map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex items-center gap-3"
-                                    >
-                                        <FaCheck
-                                            className="text-green-500"
-                                            size={13}
-                                        />
-
-                                        <span className="text-gray-600 text-sm">
-                                            {item}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                        <BookingCard destination={destination}/>
                     </div>
                 </div>
             </div>
