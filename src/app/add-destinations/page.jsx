@@ -3,6 +3,7 @@ import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button,
 import React from 'react';
 import { useRouter } from "next/navigation";
 import { BsRouterFill } from 'react-icons/bs';
+import { authClient } from '@/lib/auth-client';
 
 const AddDestinationsPage = () => {
     const router = useRouter();
@@ -13,10 +14,13 @@ const AddDestinationsPage = () => {
 
         console.log(destination)
 
+        const {data:tokenData} = await authClient.token()
+
         const res = await fetch('http://localhost:5000/destinations', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(destination)
         })
