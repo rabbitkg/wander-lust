@@ -3,6 +3,8 @@
 import BookingCard from "@/components/BookingCard";
 import { CancelAlert } from "@/components/CancelAlert";
 import { EditModal } from "@/components/EditModal";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,11 +21,17 @@ import { LuMapPin } from "react-icons/lu";
 
 const DestinationDetailsPage = async ({ params }) => {
     const { id } = await params;
+    const {token} = await auth.api.getToken({
+        headers: await headers()
+    })
+
 
     const res = await fetch(`http://localhost:5000/destination/${id}`, {
-        cache: "no-store",
+        headers: {
+            authorization: `Bearer ${token}`
+        }
     });
-
+    
     const destination = await res.json();
 
     const {

@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 
 const MyBookingPage = async () => {
+  
   const session = await auth.api.getSession({
     headers: await headers(),
   });
